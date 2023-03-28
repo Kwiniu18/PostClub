@@ -1,0 +1,134 @@
+body {
+  background-color: whitesmoke;
+}
+
+.posts {
+  margin-top: 5%;
+  margin-left: 5%;
+  position: relative;
+  float: left;
+  height: 600px;
+  width: 50%;
+
+  border-radius: 20px;
+  background-color: #bdca89;
+  box-shadow: 1px -6px 34px 11px rgba(189, 202, 137, 0.75);
+  -webkit-box-shadow: 1px -6px 34px 11px rgba(189, 202, 137, 0.75);
+  -moz-box-shadow: 1px -6px 34px 11px rgba(189, 202, 137, 0.75);
+}
+.post-nav {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  background-color: #588960;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+.post-maker {
+  width: 100%;
+  background-color: whitesmoke;
+  height: 300px;
+  position: absolute;
+  z-index: 20;
+  text-align: center;
+}
+#post-status {
+  margin: auto;
+  height: 30px;
+  border: none;
+  background-color: whitesmoke;
+  font-size: 15px;
+}
+.post-button {
+  width: 100px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: #588960;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+.post-button:hover {
+  cursor: pointer;
+}
+.search-nav {
+  width: 50%;
+  text-align: center;
+  padding-top: 10px;
+  float: right;
+}
+.nav-options {
+  width: 20%;
+  margin-left: 15%;
+  padding-top: 5px;
+}
+#search-nav {
+  border-radius: 10px;
+  width: 60%;
+  border: none;
+  height: 25px;
+}
+.pst {
+  color: white;
+  font-size: 25px;
+  margin: auto;
+}
+.posts-section {
+  width: 100%;
+  margin: auto;
+  margin-top: 40px;
+  max-height: 500px;
+  overflow: auto;
+}
+.post {
+  width: 60%;
+  background-color: whitesmoke;
+  height: 250px;
+  min-height: 250px;
+  margin: auto;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  min-width: 240px;
+}
+.post-user {
+  position: relative;
+  width: 80%;
+  top: 10%;
+}
+.post-avatar {
+  height: 50px;
+  width: 50px;
+  position: relative;
+  left: 10%;
+  float: left;
+}
+.post-user-name {
+  position: absolute;
+  left: 30%;
+  clear: both;
+}
+.post-status {
+  color: gray;
+  position: absolute;
+  right: 10%;
+}
+.post-content {
+  position: relative;
+  overflow: auto;
+  top: 40px;
+  text-align: left;
+  margin: auto;
+  width: 90%;
+  max-height: 100px;
+}
+.post-reactions {
+  position: relative;
+  bottom: -50px;
+  width: 50%;
+  margin: auto;
+}
+.reaction {
+  font-size: 20px;
+  padding: 10px;
+  float: left;
+}

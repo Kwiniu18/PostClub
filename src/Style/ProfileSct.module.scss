@@ -1,0 +1,82 @@
+.profile-section {
+  margin-top: 5%;
+  margin-right: 5%;
+  position: relative;
+  float: right;
+  height: 330px;
+  width: 30%;
+  border-radius: 20px;
+  background-color: #f5f8cc;
+  box-shadow: 1px -6px 34px 11px rgba(140, 180, 65, 0.75);
+  -webkit-box-shadow: 1px -6px 34px 11px rgba(140, 180, 65, 0.75);
+  -moz-box-shadow: 1px -6px 34px 11px rgba(140, 180, 65, 0.75);
+}
+.banner-section {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-color: #8cb441;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+.banner {
+  width: 100%;
+}
+img {
+  border-radius: 50%;
+}
+
+.avatar {
+  width: 100px;
+  height: 100px;
+  position: inherit;
+  margin: auto;
+  top: 50px;
+}
+
+.profile-description {
+  position: relative;
+  top: 55px;
+}
+.profile-name {
+  text-align: center;
+  width: 30%;
+  margin: auto;
+}
+.online-status {
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  background-color: #8cb441;
+  float: right;
+  position: relative;
+  top: 8px;
+}
+.simple-dsc {
+  color: grey;
+  width: 80%;
+  margin: auto;
+  font-size: smaller;
+  text-align: center;
+  margin-top: 4%;
+}
+.profile-nav {
+  background-color: #42531b;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.pr {
+  width: 20%;
+  height: 30px;
+  float: left;
+  margin: 2.3%;
+  text-align: center;
+  font-size: 25px;
+}
+.bi {
+  color: white;
+}
