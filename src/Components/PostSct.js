@@ -1,23 +1,13 @@
 import React, { useState } from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const PostSct = () => {
-  const postsList = [
-    {
-      name: "Dominik",
-      content:
-        " Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed doeiusmod tempor incididunt ut labore etLorem ipsum dolor sit ametconsectetur adipiscing elit sed do eiusmod tempor incididunt utlabore et dolore magna aliquaLorem ipsum dolor sit amet, consecteturadipiscing elit sed do eiusmod tempor incididunt ut labore etdolore magna aliqua dolore magna aliqua",
-      userStatus: " 😂 get laught",
-    },
-    {
-      name: "Stanisław",
-      content: " Lorem ipsum dolor sit amet",
-      userStatus: " 😴 sleeper",
-    },
-  ];
-  const [posts, setPosts] = useState(postsList);
-
-  console.log(posts);
-
+  const user_name = "Dominik Kwintal";
+  const [posts, setPosts] = useState([]);
+  const [like, setLike] = useState(0);
+  const [sad, setSad] = useState(0);
+  const [love, setLove] = useState(0);
+  const [haha, setHaha] = useState(0);
   return (
     <div className="posts">
       <div className="post-nav">
@@ -27,13 +17,23 @@ const PostSct = () => {
         <div className="nav-options">
           <i
             class="pst bi-plus-square"
+            id="plus"
             onClick={() => {
               let postmaker = document.getElementById("post-maker");
-              if (postmaker.style.display == "none") {
-                postmaker.style.display = "block";
-              } else {
-                postmaker.style.display = "none";
-              }
+              postmaker.style.display = "block";
+              document.getElementById("minus").style.display = "block";
+              document.getElementById("plus").style.display = "none";
+            }}
+          ></i>
+          <i
+            id="minus"
+            style={{ display: "none" }}
+            class="pst bi-dash-square"
+            onClick={() => {
+              let postmaker = document.getElementById("post-maker");
+              postmaker.style.display = "none";
+              document.getElementById("minus").style.display = "none";
+              document.getElementById("plus").style.display = "block";
             }}
           ></i>
         </div>
@@ -61,16 +61,21 @@ const PostSct = () => {
           <button
             className="post-button"
             onClick={() => {
+              document.getElementById("minus").style.display = "none";
+              document.getElementById("plus").style.display = "block";
               let post_content = document.getElementById("text-area").value;
               let post_status = document.getElementById("post-status").value;
-
-              postsList.push({
-                name: "Dominik",
-                content: post_content,
-                userStatus: post_status,
-              });
-
-              console.log(postsList);
+              document.getElementById("post-maker").style.display = "none";
+              setPosts([
+                {
+                  name: user_name,
+                  content: post_content,
+                  userStatus: post_status,
+                },
+                ...posts,
+              ]);
+              document.getElementById("text-area").value = " ";
+              console.log(posts);
             }}
           >
             Post
@@ -78,25 +83,34 @@ const PostSct = () => {
         </div>
       </div>
       <div className="posts-section">
-        {postsList.map((e) => (
+        {posts.map((e) => (
           <div className="post">
             <div className="post-user">
               <div className="post-avatar">
                 <img
                   src="https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1"
+                  alt="your avatar"
                   width={"100%"}
                 ></img>
               </div>
-              <div className="post-user-name">{e.name}</div>
+              <div className="post-user-name">{user_name}</div>
               <div className="post-status">- {e.userStatus}</div>
             </div>
             <div className="post-content">{e.content}</div>
 
             <div className="post-reactions">
-              <div className="reaction haha">😂</div>
-              <div className="reaction sad">😥</div>
-              <div className="reaction love">💚</div>
-              <div className="reaction like">👍</div>
+              <div className="reaction haha" title={haha}>
+                <p id="reaction-haha">😂</p>
+              </div>
+              <div className="reaction sad" title={sad}>
+                <p id="reaction-sad">😥 </p>
+              </div>
+              <div className="reaction love" title={love}>
+                <p id="reaction-love">💚</p>
+              </div>
+              <div className="reaction like" title={like}>
+                <p id="reaction-like">👍</p>
+              </div>
             </div>
           </div>
         ))}
