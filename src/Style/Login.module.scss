@@ -1,0 +1,79 @@
+body {
+  background-color: whitesmoke;
+}
+.login-container {
+  position: relative;
+  margin: auto;
+  margin-top: 15vh;
+  width: 60%;
+  height: 70vh;
+  background-color: #bdca89;
+  border-radius: 30px;
+  box-shadow: 2px -1px 49px 27px rgba(189, 202, 137, 0.75);
+  -webkit-box-shadow: 2px -1px 49px 27px rgba(189, 202, 137, 0.75);
+  -moz-box-shadow: 2px -1px 49px 27px rgba(189, 202, 137, 0.75);
+}
+.login-left {
+  display: block;
+  height: 100%;
+  float: left;
+  width: 50%;
+}
+.login-right {
+  float: left;
+  display: block;
+  height: 100%;
+  width: 50%;
+  color: white;
+}
+.login-title {
+  text-align: center;
+  font-size: 50px;
+  font-weight: 650;
+  margin-top: 20px;
+}
+.login-form {
+  margin: auto;
+  text-align: center;
+  width: 60%;
+}
+#login {
+  margin-top: 50px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+}
+#forgot {
+  text-align: left;
+  font-size: smaller;
+  color: black;
+  text-decoration: underline;
+  padding: 10px;
+}
+#forgot:hover {
+  cursor: pointer;
+}
+.login-button {
+  margin-top: 5vh;
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+  background-color: #42531b;
+  height: 40px;
+  color: white;
+  box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+  -webkit-box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+  -moz-box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+}
+#register {
+  text-align: center;
+  font-size: smaller;
+  color: black;
+  text-decoration: underline;
+  padding: 10px;
+}

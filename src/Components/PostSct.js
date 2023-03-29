@@ -1,13 +1,9 @@
 import React, { useState } from "react";
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const PostSct = () => {
   const user_name = "Dominik Kwintal";
   const [posts, setPosts] = useState([]);
-  const [like, setLike] = useState(0);
-  const [sad, setSad] = useState(0);
-  const [love, setLove] = useState(0);
-  const [haha, setHaha] = useState(0);
+
   return (
     <div className="posts">
       <div className="post-nav">
@@ -61,16 +57,21 @@ const PostSct = () => {
           <button
             className="post-button"
             onClick={() => {
+              const date = new Date();
+              let hour = date.getHours() + " : " + date.getMinutes();
+              console.log(hour);
               document.getElementById("minus").style.display = "none";
               document.getElementById("plus").style.display = "block";
               let post_content = document.getElementById("text-area").value;
               let post_status = document.getElementById("post-status").value;
               document.getElementById("post-maker").style.display = "none";
+
               setPosts([
                 {
                   name: user_name,
                   content: post_content,
                   userStatus: post_status,
+                  time: hour,
                 },
                 ...posts,
               ]);
@@ -93,22 +94,23 @@ const PostSct = () => {
                   width={"100%"}
                 ></img>
               </div>
-              <div className="post-user-name">{user_name}</div>
+              <div className="post-user-name">{e.name}</div>
               <div className="post-status">- {e.userStatus}</div>
+              <div className="post-hour">{e.time}</div>
             </div>
             <div className="post-content">{e.content}</div>
 
             <div className="post-reactions">
-              <div className="reaction haha" title={haha}>
+              <div className="reaction haha">
                 <p id="reaction-haha">😂</p>
               </div>
-              <div className="reaction sad" title={sad}>
+              <div className="reaction sad">
                 <p id="reaction-sad">😥 </p>
               </div>
-              <div className="reaction love" title={love}>
+              <div className="reaction love">
                 <p id="reaction-love">💚</p>
               </div>
-              <div className="reaction like" title={like}>
+              <div className="reaction like">
                 <p id="reaction-like">👍</p>
               </div>
             </div>
