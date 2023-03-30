@@ -1,7 +1,10 @@
 import React from "react";
-
+import axios from "axios";
 const ProfileSct = () => {
   const user_name = "Dominik Kwintal";
+  const logOut = () => {
+    window.location = "/login";
+  };
 
   return (
     <div className="profile-section">
@@ -60,7 +63,9 @@ const ProfileSct = () => {
         }}
         style={{ display: "none" }}
       >
-        <p id="setting">wyloguj</p>
+        <p id="setting" onClick={logOut}>
+          wyloguj
+        </p>
         <p id="setting">ustawienia</p>
         <p id="setting">status</p>
       </div>

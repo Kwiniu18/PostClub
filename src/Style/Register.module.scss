@@ -1,0 +1,51 @@
+#register-title {
+  color: white;
+  text-align: center;
+  padding-top: 20px;
+}
+.register-form {
+  text-align: center;
+}
+#name,
+#sirname,
+#re-password,
+#re-email {
+  margin-top: 30px;
+  width: 60%;
+  height: 40px;
+  border: none;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+  -webkit-box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+  -moz-box-shadow: 2px -1px 49px 12px rgba(255, 255, 255, 0.75);
+}
+.register-right {
+  float: right;
+  display: block;
+  width: 50%;
+}
+.register-left {
+  float: left;
+  width: 50%;
+  display: block;
+}
+.re {
+  font-size: 30px;
+  padding-right: 20px;
+  color: #7830e0;
+}
+.register-btn {
+  margin: auto;
+  margin-top: 5vh;
+  border: none;
+  border-radius: 20px;
+  width: 50%;
+  background-color: #42531b;
+  height: 40px;
+  color: white;
+  box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+  -webkit-box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+  -moz-box-shadow: 2px -1px 49px 5px rgba(66, 83, 27, 0.75);
+  margin-left: 40px;
+}
