@@ -1,11 +1,10 @@
-import React from "react";
-import axios from "axios";
+import React, { useState } from "react";
 const ProfileSct = () => {
   const user_name = "Dominik Kwintal";
   const logOut = () => {
     window.location = "/login";
   };
-
+  const [desc, setDesc] = useState("Your profile description");
   return (
     <div className="profile-section">
       <div className="banner-section">
@@ -24,9 +23,32 @@ const ProfileSct = () => {
           <div className="online-status"></div>
         </div>
 
-        <div className="simple-dsc">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua
+        <div
+          className="simple-dsc"
+          id="simple-dsc"
+          title="Edit description"
+          onClick={() => {
+            document.getElementById("edit-desc").style.display = "block";
+            document.getElementById("simple-dsc").style.display = "none";
+          }}
+        >
+          {desc}
+        </div>
+        <div className="edit-desc" id="edit-desc" style={{ display: "none" }}>
+          <textarea
+            id="edit-text"
+            value={desc}
+            onChange={(e) => setDesc(e.target.value)}
+          ></textarea>
+          <button
+            id="save-btn"
+            onClick={() => {
+              document.getElementById("edit-desc").style.display = "none";
+              document.getElementById("simple-dsc").style.display = "block";
+            }}
+          >
+            Save
+          </button>
         </div>
       </div>
       <div className="profile-nav" id="profile-nav">

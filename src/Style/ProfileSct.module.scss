@@ -1,9 +1,9 @@
 .profile-section {
-  margin-top: 5%;
+  margin-top: 3%;
   margin-right: 5%;
   position: relative;
   float: right;
-  height: 330px;
+  height: 300px;
   width: 30%;
   border-radius: 20px;
   background-color: #f5f8cc;
@@ -21,6 +21,7 @@
 }
 .banner {
   width: 100%;
+  border-radius: none;
 }
 img {
   border-radius: 50%;
@@ -99,4 +100,21 @@ img {
 #setting:hover {
   background-color: #8cb441;
   cursor: pointer;
+}
+.simple-dsc:hover {
+  cursor: pointer;
+  color: rgb(156, 156, 156);
+}
+.edit-desc {
+  text-align: center;
+  position: relative;
+  margin: auto;
+  width: 60%;
+}
+#edit-text {
+  width: 100%;
+}
+#save-btn {
+  background: none;
+  border: none;
 }
