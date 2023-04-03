@@ -5,6 +5,10 @@ function Register() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
+  const [avatarUrl, setAvatarUrl] = useState(
+    "https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1"
+  );
+  const [profileDesc, setProfileDesc] = useState("your profile description");
   function register(e) {
     e.preventDefault(e);
     const params = {
@@ -12,11 +16,11 @@ function Register() {
       name: name,
       surname: surname,
       password: password,
-      avatar_url: "string",
-      description: "string",
+      avatar_url: avatarUrl,
+      description: profileDesc,
     };
 
-    axios.post("http://192.168.5.27:8000/users", params).then((response) => {
+    axios.post("http://192.168.5.22:8000/users", params).then((response) => {
       //let token = response.data.access_token;
       console.log(response);
       window.location = "http://localhost:3000/login";
@@ -25,9 +29,9 @@ function Register() {
   return (
     <div className="login-container">
       <h1 id="register-title">Register</h1>
-      <div className="register-right">
-        <div className="register-form">
-          <form onSubmit={register}>
+      <form onSubmit={register}>
+        <div className="register-right">
+          <div className="register-form">
             <i class="re bi-person-fill"></i>
             <input
               type="text"
@@ -69,19 +73,35 @@ function Register() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <br></br>
-            <button className="register-btn" type="sumbit">
+            <button type="submit" className="register-btn">
               Register
             </button>
-          </form>
+          </div>
         </div>
-      </div>
-      <div className="register-left">
-        <img
-          alt="chinolu zdjecie nie dziala"
-          src="https://interactivevision.pl/static/specjalista-social-media-niewidzialna-reka-profili-spolecznosciowych_og-1d4b71dc8174db601f38dc05442dedf5.png"
-          width={"100%"}
-        ></img>
-      </div>
+        <div className="register-left">
+          <input
+            type="text"
+            id="sirname"
+            placeholder="paste avatar url here"
+            value={avatarUrl}
+            onChange={(e) => setAvatarUrl(e.target.value)}
+          ></input>
+          <textarea
+            value={profileDesc}
+            onChange={(e) => setProfileDesc(e.target.value)}
+            placeholder="Your profile description"
+            id="desc-input"
+          ></textarea>
+          <br></br>
+          <img
+            alt="Your Avatar here"
+            src={avatarUrl}
+            width={"160px"}
+            style={{ margin: "auto" }}
+            id="avatar-display"
+          ></img>
+        </div>
+      </form>
     </div>
   );
 }

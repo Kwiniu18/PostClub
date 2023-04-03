@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 const ProfileSct = () => {
-  const user_name = "Dominik Kwintal";
+  const user_name =
+    localStorage.getItem("name") + " " + localStorage.getItem("surname");
   const logOut = () => {
     window.location = "/login";
+    localStorage.clear();
   };
-  const [desc, setDesc] = useState("Your profile description");
+  const [desc, setDesc] = useState(localStorage.getItem("description"));
   return (
     <div className="profile-section">
       <div className="banner-section">
@@ -12,16 +14,13 @@ const ProfileSct = () => {
         <div className="avatar">
           <img
             alt="avatar"
-            src="https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1"
+            src={localStorage.getItem("avatarUrl")}
             width={"100%"}
           ></img>
         </div>
       </div>
       <div className="profile-description">
-        <div className="profile-name">
-          {user_name}
-          <div className="online-status"></div>
-        </div>
+        <div className="profile-name">{user_name}</div>
 
         <div
           className="simple-dsc"

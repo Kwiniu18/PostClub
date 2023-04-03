@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 
 const PostSct = () => {
-  const user_name = "Dominik Kwintal";
+  const user_name =
+    localStorage.getItem("name") + " " + localStorage.getItem("surname");
+  let id = 0;
   const [posts, setPosts] = useState([]);
 
   return (
@@ -72,6 +74,7 @@ const PostSct = () => {
                   content: post_content,
                   userStatus: post_status,
                   time: hour,
+                  id: id++,
                 },
                 ...posts,
               ]);
@@ -89,7 +92,7 @@ const PostSct = () => {
             <div className="post-user">
               <div className="post-avatar">
                 <img
-                  src="https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1"
+                  src={localStorage.getItem("avatarUrl")}
                   alt="your avatar"
                   width={"100%"}
                 ></img>

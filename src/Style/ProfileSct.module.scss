@@ -93,6 +93,7 @@ img {
   right: 0;
   bottom: -110px;
   color: whitesmoke;
+  z-index: 10;
 }
 #setting {
   padding-left: 10px;
@@ -110,6 +111,7 @@ img {
   position: relative;
   margin: auto;
   width: 60%;
+  z-index: 20;
 }
 #edit-text {
   width: 100%;
@@ -117,4 +119,7 @@ img {
 #save-btn {
   background: none;
   border: none;
+  background-color: #8cb441;
+  border-radius: 20px;
+  width: 100px;
 }

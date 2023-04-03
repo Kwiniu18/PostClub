@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+
 function Login() {
   function getToken(e) {
     e.preventDefault();
@@ -7,11 +8,31 @@ function Login() {
     params.append("username", email);
     params.append("password", password);
 
-    axios.post("http://192.168.5.27:8000/token", params).then((response) => {
+    axios.post("http://192.168.5.22:8000/token", params).then((response) => {
       //let token = response.data.access_token;
       console.log(response.data.access_token);
-      window.location = "/postClub";
+      localStorage.setItem("token", response.data.access_token);
+      setTimeout(() => (window.location = "/postClub"), 3000);
     });
+    setTimeout(() => {
+      console.log("storage" + localStorage.getItem("token")); //null
+      const AUTH_TOKEN = localStorage.getItem("token");
+      if (AxiosError) {
+        document.getElementById("error").style.display = "block";
+      } else {
+        document.getElementById("error").style.display = "none";
+      }
+      axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
+      // console.log(axios.get("http://192.168.5.22:8000/me"));
+      let user_data = axios.get("http://192.168.5.22:8000/me");
+      user_data.then((user_info) => {
+        localStorage.setItem("name", user_info.data.name);
+        localStorage.setItem("surname", user_info.data.surname);
+        localStorage.setItem("username", user_info.data.username);
+        localStorage.setItem("avatarUrl", user_info.data.avatar_url);
+        localStorage.setItem("description", user_info.data.description);
+      });
+    }, 2000);
   }
   function newAccount() {
     window.location = "/login/register";
@@ -53,6 +74,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <p id="forgot">forgot your password?</p>
+            <p id="error">wrong username or password</p>
             <button type="submit" className="login-button">
               login
             </button>
