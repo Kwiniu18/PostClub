@@ -1,0 +1,94 @@
+@media screen and (max-width: 1150px) {
+  .profile-section {
+    clear: both;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+    float: left;
+    margin-top: 5%;
+    margin-left: 3%;
+  }
+  .posts {
+    top: 370px;
+    width: 90%;
+    left: 0;
+    right: 0;
+  }
+  .chat-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    width: 35%;
+    margin-top: 5%;
+    margin-right: 3%;
+  }
+}
+@media screen and (max-width: 840px) {
+  .chat-container {
+    clear: both;
+    margin: 0;
+    width: 60%;
+    top: 370px;
+    right: auto;
+    left: 20%;
+    min-width: 350px;
+  }
+  .chat-chat {
+    width: 83%;
+    min-width: none;
+  }
+  .friend {
+    width: 40px;
+  }
+  .profile-section {
+    left: 13%;
+    width: 70%;
+  }
+  .posts {
+    top: 680px;
+  }
+  .chat-friends {
+    width: 35px;
+  }
+}
+@media screen and (max-width: 618px) {
+  .chat-container {
+    width: 100%;
+    margin: 0;
+    left: 0;
+  }
+  .chat-chat {
+    width: 85%;
+  }
+  .friend {
+    width: 30px;
+  }
+  .chat-friends {
+    width: 5%;
+  }
+  .posts {
+    width: 100%;
+    margin: 0;
+    top: 735px;
+  }
+  .profile-section {
+    width: 100%;
+    margin: 0;
+    left: 0;
+  }
+}
+@media screen and (max-width: 618px) {
+  .chat-chat {
+    width: 80%;
+    min-width: none;
+  }
+}
+@media screen and (max-width: 380px) {
+  .chat-chat {
+    min-width: none;
+    width: 40%;
+  }
+}

@@ -2,6 +2,7 @@
   position: relative;
   height: 300px;
   width: 30%;
+  min-width: 367px;
   float: right;
   margin-top: 2%;
   margin-right: 5%;
@@ -16,17 +17,19 @@
   width: 15%;
   display: block;
   height: 100%;
+  min-width: 60px;
 }
 .friend {
   float: left;
-  height: 30px;
-  width: 30px;
+  min-height: 30px;
+  min-width: 30px;
 
   border-radius: 50%;
 }
 .chat-chat {
   float: right;
   width: 83%;
+  min-width: 300px;
   display: block;
   height: 100%;
   border-left: 1px #8cb441 dashed;

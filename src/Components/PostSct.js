@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const PostSct = () => {
-  const [postStatus, setPostStatus] = useState("");
+  const [postStatus, setPostStatus] = useState("😊 Happy");
   const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
 
-  let categroy_id = "3c696bef-97aa-40f9-8010-ae4928696808"; // main category
+  let categroy_id = "e38d85fd-16bd-4b68-9ade-1fd3c8bbdfe6"; // main category
   const AUTH_TOKEN = localStorage.getItem("token");
   const makePost = (e) => {
     e.preventDefault(e);
@@ -20,16 +20,13 @@ const PostSct = () => {
     //! AUTHORIZATION
     axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
     axios.post(process.env.REACT_APP_IP + "/posts", params).then((response) => {
-      console.log(response);
       loadPosts();
     });
   };
   function loadPosts() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
     axios.get(process.env.REACT_APP_IP + "/posts").then((responsePost) => {
-      console.log(responsePost.data.items);
       setPosts(responsePost.data.items);
-      console.log(posts);
     });
   }
   //! READING POSTS
@@ -128,19 +125,19 @@ const PostSct = () => {
               {/* <div className="post-hour">{e.time}</div> */}
             </div>
             <div className="post-content">{e.text}</div>
-
+            <hr></hr>
             <div className="post-reactions">
               <div className="reaction haha">
-                <p id="reaction-haha">😂</p>
+                <p id="reaction">😂</p>
               </div>
               <div className="reaction sad">
-                <p id="reaction-sad">😥 </p>
+                <p id="reaction">😥 </p>
               </div>
               <div className="reaction love">
-                <p id="reaction-love">💚</p>
+                <p id="reaction">💚</p>
               </div>
               <div className="reaction like">
-                <p id="reaction-like">👍</p>
+                <p id="reaction">👍</p>
               </div>
             </div>
           </div>
