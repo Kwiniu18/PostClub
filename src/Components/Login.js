@@ -1,30 +1,32 @@
 import React, { useState } from "react";
 import axios, { AxiosError } from "axios";
-
+import { useNavigate } from "react-router-dom";
 function Login() {
+  const navigate = useNavigate();
   function getToken(e) {
     e.preventDefault();
     const params = new URLSearchParams();
     params.append("username", email);
     params.append("password", password);
 
-    axios.post("http://192.168.5.22:8000/token", params).then((response) => {
+    axios.post(process.env.REACT_APP_IP + "/token", params).then((response) => {
       //let token = response.data.access_token;
       console.log(response.data.access_token);
       localStorage.setItem("token", response.data.access_token);
-      setTimeout(() => (window.location = "/postClub"), 3000);
+      setTimeout(() => navigate("/postClub"), 3000);
     });
     setTimeout(() => {
       console.log("storage" + localStorage.getItem("token")); //null
+      let storage = localStorage.getItem("token");
       const AUTH_TOKEN = localStorage.getItem("token");
-      if (AxiosError) {
+      if (storage == null) {
         document.getElementById("error").style.display = "block";
       } else {
         document.getElementById("error").style.display = "none";
       }
+      console.log(AxiosError);
       axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
-      // console.log(axios.get("http://192.168.5.22:8000/me"));
-      let user_data = axios.get("http://192.168.5.22:8000/me");
+      let user_data = axios.get(process.env.REACT_APP_IP + "/me");
       user_data.then((user_info) => {
         localStorage.setItem("name", user_info.data.name);
         localStorage.setItem("surname", user_info.data.surname);
@@ -35,7 +37,7 @@ function Login() {
     }, 2000);
   }
   function newAccount() {
-    window.location = "/login/register";
+    navigate("/login/register");
   }
 
   const [password, setPassword] = useState("");
@@ -74,7 +76,7 @@ function Login() {
               onChange={(e) => setPassword(e.target.value)}
             ></input>
             <p id="forgot">forgot your password?</p>
-            <p id="error">wrong username or password</p>
+            <p id="error">ERROR</p>
             <button type="submit" className="login-button">
               login
             </button>

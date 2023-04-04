@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 function Register() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
@@ -18,12 +20,14 @@ function Register() {
       password: password,
       avatar_url: avatarUrl,
       description: profileDesc,
+      is_admin: true,
     };
-
-    axios.post("http://192.168.5.22:8000/users", params).then((response) => {
+    const AUTH_TOKEN = localStorage.getItem("token");
+    axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
+    axios.post(process.env.REACT_APP_IP + "/users", params).then((response) => {
       //let token = response.data.access_token;
       console.log(response);
-      window.location = "http://localhost:3000/login";
+      navigate("/login");
     });
   }
   return (

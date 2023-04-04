@@ -1,10 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const PostSct = () => {
-  const user_name =
-    localStorage.getItem("name") + " " + localStorage.getItem("surname");
-  let id = 0;
+  const [postStatus, setPostStatus] = useState("");
+  const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
+
+  let categroy_id = "3c696bef-97aa-40f9-8010-ae4928696808"; // main category
+  const AUTH_TOKEN = localStorage.getItem("token");
+  const makePost = (e) => {
+    e.preventDefault(e);
+    const params = {
+      title: postStatus,
+      text: postContent,
+      image_url: "string",
+      category_id: categroy_id,
+      disabled: "false",
+    };
+    //! AUTHORIZATION
+    axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
+    axios.post(process.env.REACT_APP_IP + "/posts", params).then((response) => {
+      console.log(response);
+      loadPosts();
+    });
+  };
+  function loadPosts() {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
+    axios.get(process.env.REACT_APP_IP + "/posts").then((responsePost) => {
+      console.log(responsePost.data.items);
+      setPosts(responsePost.data.items);
+      console.log(posts);
+    });
+  }
+  //! READING POSTS
+  useEffect(loadPosts, []);
 
   return (
     <div className="posts">
@@ -36,54 +65,49 @@ const PostSct = () => {
           ></i>
         </div>
         <div className="post-maker" id="post-maker" style={{ display: "none" }}>
-          <textarea
-            id="text-area"
-            type="text"
-            placeholder="Write something . . ."
-            style={{
-              width: "40%",
-              padding: "10px",
-              height: "100px",
-              marginTop: "40px",
-              textAlign: "none",
-            }}
-          ></textarea>
-          <br></br>
-          <select id="post-status">
-            <option value="😊 Happy">😊 Happy</option>
-            <option value="😥 sad">😥 Sad</option>
-            <option value="😴 Sleeper">😴 Sleeper</option>
-            <option value="😡 Angry">😡 Angry</option>
-          </select>
-          <br></br>
-          <button
-            className="post-button"
-            onClick={() => {
-              const date = new Date();
-              let hour = date.getHours() + " : " + date.getMinutes();
-              console.log(hour);
-              document.getElementById("minus").style.display = "none";
-              document.getElementById("plus").style.display = "block";
-              let post_content = document.getElementById("text-area").value;
-              let post_status = document.getElementById("post-status").value;
-              document.getElementById("post-maker").style.display = "none";
-
-              setPosts([
-                {
-                  name: user_name,
-                  content: post_content,
-                  userStatus: post_status,
-                  time: hour,
-                  id: id++,
-                },
-                ...posts,
-              ]);
-              document.getElementById("text-area").value = " ";
-              console.log(posts);
-            }}
-          >
-            Post
-          </button>
+          <form onSubmit={makePost}>
+            <textarea
+              value={postContent}
+              onChange={(e) => setPostContent(e.target.value)}
+              id="text-area"
+              type="text"
+              placeholder="Write something . . ."
+              style={{
+                width: "40%",
+                padding: "10px",
+                height: "100px",
+                marginTop: "40px",
+                textAlign: "none",
+              }}
+            ></textarea>
+            <br></br>
+            <select
+              id="post-status"
+              value={postStatus}
+              onChange={(e) => setPostStatus(e.target.value)}
+            >
+              <option value="😊 Happy">😊 Happy</option>
+              <option value="😥 sad">😥 Sad</option>
+              <option value="😴 Sleeper">😴 Sleeper</option>
+              <option value="😡 Angry">😡 Angry</option>
+            </select>
+            <br></br>
+            <button
+              className="post-button"
+              type="submit"
+              onClick={() => {
+                const date = new Date();
+                let hour = date.getHours() + " : " + date.getMinutes();
+                console.log(hour);
+                document.getElementById("minus").style.display = "none";
+                document.getElementById("plus").style.display = "block";
+                document.getElementById("post-maker").style.display = "none";
+                document.getElementById("text-area").value = " ";
+              }}
+            >
+              Post
+            </button>
+          </form>
         </div>
       </div>
       <div className="posts-section">
@@ -92,16 +116,18 @@ const PostSct = () => {
             <div className="post-user">
               <div className="post-avatar">
                 <img
-                  src={localStorage.getItem("avatarUrl")}
+                  src={e.author.avatar_url}
                   alt="your avatar"
                   width={"100%"}
                 ></img>
               </div>
-              <div className="post-user-name">{e.name}</div>
-              <div className="post-status">- {e.userStatus}</div>
-              <div className="post-hour">{e.time}</div>
+              <div className="post-user-name">
+                {e.author.name + " " + e.author.surname}
+              </div>
+              <div className="post-status">- {e.title}</div>
+              {/* <div className="post-hour">{e.time}</div> */}
             </div>
-            <div className="post-content">{e.content}</div>
+            <div className="post-content">{e.text}</div>
 
             <div className="post-reactions">
               <div className="reaction haha">
