@@ -6,7 +6,7 @@ const PostSct = () => {
   const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
 
-  let categroy_id = "e38d85fd-16bd-4b68-9ade-1fd3c8bbdfe6"; // main category
+  let categroy_id = "1a2996e6-98d5-49c4-8619-397f95645325"; // main category
   const AUTH_TOKEN = localStorage.getItem("token");
   const makePost = (e) => {
     e.preventDefault(e);
@@ -23,12 +23,20 @@ const PostSct = () => {
       loadPosts();
     });
   };
+
   function loadPosts() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
     axios.get(process.env.REACT_APP_IP + "/posts").then((responsePost) => {
-      setPosts(responsePost.data.items);
+      let postArray = responsePost.data.items.reverse();
+      postArray = postArray.filter((item) => item.disabled === false);
+      setPosts(postArray);
+      console.log(responsePost.data.items);
+
+      // let user_id = localStorage.getItem("user_id");
+      // if(user_id == )
     });
   }
+
   //! READING POSTS
   useEffect(loadPosts, []);
 
@@ -49,6 +57,7 @@ const PostSct = () => {
               document.getElementById("plus").style.display = "none";
             }}
           ></i>
+
           <i
             id="minus"
             style={{ display: "none" }}
@@ -59,6 +68,11 @@ const PostSct = () => {
               document.getElementById("minus").style.display = "none";
               document.getElementById("plus").style.display = "block";
             }}
+          ></i>
+          <i
+            class="pst bi-arrow-clockwise"
+            onClick={loadPosts}
+            id="refresh-btn"
           ></i>
         </div>
         <div className="post-maker" id="post-maker" style={{ display: "none" }}>
@@ -118,12 +132,31 @@ const PostSct = () => {
                   width={"100%"}
                 ></img>
               </div>
+
               <div className="post-user-name">
                 {e.author.name + " " + e.author.surname}
               </div>
+
               <div className="post-status">- {e.title}</div>
-              {/* <div className="post-hour">{e.time}</div> */}
             </div>
+            {localStorage.getItem("user_id") == e.author.id ? (
+              <p
+                title="delete post"
+                id="bin"
+                onClick={() => {
+                  console.log(e.id);
+                  axios.defaults.headers.common["Authorization"] =
+                    "Bearer " + AUTH_TOKEN;
+                  axios
+                    .delete(process.env.REACT_APP_IP + "/posts?post_id=" + e.id)
+                    .then((response) => {
+                      loadPosts();
+                    });
+                }}
+              >
+                ❌
+              </p>
+            ) : null}
             <div className="post-content">{e.text}</div>
             <hr></hr>
             <div className="post-reactions">

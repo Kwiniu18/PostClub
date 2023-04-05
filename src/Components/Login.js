@@ -28,6 +28,7 @@ function Login() {
       axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
       let user_data = axios.get(process.env.REACT_APP_IP + "/me");
       user_data.then((user_info) => {
+        localStorage.setItem("user_id", user_info.data.id);
         localStorage.setItem("name", user_info.data.name);
         localStorage.setItem("surname", user_info.data.surname);
         localStorage.setItem("username", user_info.data.username);

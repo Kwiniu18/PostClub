@@ -16,6 +16,9 @@
     left: 0;
     right: 0;
   }
+  .post {
+    width: 80%;
+  }
   .chat-container {
     position: absolute;
     top: 0;
@@ -24,6 +27,11 @@
     width: 35%;
     margin-top: 5%;
     margin-right: 3%;
+  }
+  #bin {
+    position: absolute;
+    left: 80%;
+    top: 100px;
   }
 }
 @media screen and (max-width: 840px) {
@@ -59,9 +67,17 @@
     width: 100%;
     margin: 0;
     left: 0;
+    border-radius: 0;
+    top: 320px;
   }
   .chat-chat {
     width: 85%;
+  }
+  .chat-bar {
+    border-radius: 0;
+  }
+  .chat-nav {
+    border-radius: 0;
   }
   .friend {
     width: 30px;
@@ -72,12 +88,28 @@
   .posts {
     width: 100%;
     margin: 0;
-    top: 735px;
+    top: 635px;
+    height: 100vh;
+  }
+  .post-nav {
+    border-radius: 0;
+  }
+  .post {
+    width: 90%;
   }
   .profile-section {
     width: 100%;
     margin: 0;
     left: 0;
+    border-radius: 0;
+  }
+  .profile-nav {
+    border-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .banner-section {
+    border-radius: 0;
   }
 }
 @media screen and (max-width: 618px) {
@@ -86,9 +118,44 @@
     min-width: none;
   }
 }
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 860px) {
   .chat-chat {
     min-width: none;
-    width: 40%;
+    width: 80%;
+  }
+}
+
+///LOGIN PAGE
+
+@media screen and (max-width: 1160px) {
+  .login-container {
+    width: 80%;
+  }
+}
+@media screen and (max-width: 880px) {
+  .login-left {
+    display: none;
+  }
+  .login-right {
+    width: 90%;
+    margin: auto;
+    margin-left: 6%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .login-right {
+    width: 100%;
+    margin-left: 1%;
+    margin-top: 10%;
+  }
+  .login-container {
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: none;
+    padding: 0;
+    bottom: 0;
   }
 }
