@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Login from "../Components/Login";
 import PageApp from "../Components/PageApp";
 import Register from "../Components/Register";
+import PageNotFound from "../Components/PageNotFound";
 
 const loginRouter = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const loginRouter = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
+  },
+  {
+    path: "*",
+    element: <PageNotFound />,
   },
 ]);
 export default loginRouter;
