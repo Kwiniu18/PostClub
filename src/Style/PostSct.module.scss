@@ -164,9 +164,12 @@ body {
   cursor: pointer;
 }
 #bin {
-  position: absolute;
-  left: 70%;
-  top: 100px;
+  position: relative;
+  right: -90%;
+  top: -60px;
+  width: 5px;
+  height: 5px;
+  z-index: 19;
 }
 #bin:hover {
   cursor: pointer;

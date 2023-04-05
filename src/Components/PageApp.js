@@ -7,7 +7,7 @@ function PageApp() {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token") == null) {
-      navigate("/login");
+      navigate("/");
     }
   });
   return (

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const ProfileSct = () => {
+  const navigate = useNavigate();
   const user_name =
     localStorage.getItem("name") + " " + localStorage.getItem("surname");
   const logOut = () => {
-    window.location = "/login";
+    navigate("/");
     localStorage.clear();
   };
   const [desc, setDesc] = useState(localStorage.getItem("description"));

@@ -9,12 +9,12 @@ const loginRouter = createBrowserRouter([
     element: <PageApp />,
   },
   {
-    path: "/login",
-    element: <Login />,
+    path: "/register",
+    element: <Register />,
   },
   {
-    path: "/login/register",
-    element: <Register />,
+    path: "/",
+    element: <Login />,
   },
 ]);
 export default loginRouter;

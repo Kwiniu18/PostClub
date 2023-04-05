@@ -37,9 +37,6 @@ function Login() {
       });
     }, 2000);
   }
-  function newAccount() {
-    navigate("/login/register");
-  }
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -81,7 +78,12 @@ function Login() {
             <button type="submit" className="login-button">
               login
             </button>
-            <p id="register" onClick={newAccount}>
+            <p
+              id="register"
+              onClick={() => {
+                navigate("/register");
+              }}
+            >
               Dont't have account?{" "}
             </p>
           </form>

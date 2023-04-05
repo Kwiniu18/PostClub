@@ -31,9 +31,6 @@ const PostSct = () => {
       postArray = postArray.filter((item) => item.disabled === false);
       setPosts(postArray);
       console.log(responsePost.data.items);
-
-      // let user_id = localStorage.getItem("user_id");
-      // if(user_id == )
     });
   }
 

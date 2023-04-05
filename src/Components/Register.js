@@ -27,7 +27,7 @@ function Register() {
     axios.post(process.env.REACT_APP_IP + "/users", params).then((response) => {
       //let token = response.data.access_token;
       console.log(response);
-      navigate("/login");
+      navigate("/");
     });
   }
   return (
