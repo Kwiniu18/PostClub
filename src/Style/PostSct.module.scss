@@ -174,3 +174,20 @@ body {
 #bin:hover {
   cursor: pointer;
 }
+.page-switcher {
+  position: relative;
+  width: 10%;
+  margin: 0 auto;
+  margin-top: 8px;
+}
+.page-switch {
+  margin-left: 10px;
+  background: none;
+  border: none;
+}
+.page-switch:active {
+  color: white;
+}
+.page-switch:hover {
+  color: white;
+}

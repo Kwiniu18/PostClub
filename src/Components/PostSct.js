@@ -5,6 +5,7 @@ const PostSct = () => {
   const [postStatus, setPostStatus] = useState("😊 Happy");
   const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
 
   let categroy_id = "1a2996e6-98d5-49c4-8619-397f95645325"; // main category
   const AUTH_TOKEN = localStorage.getItem("token");
@@ -24,15 +25,25 @@ const PostSct = () => {
     });
   };
 
+  const [pageNumber, setPageNumber] = useState(pageCount);
+  const params = {
+    page: pageNumber,
+  };
+
   function loadPosts() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
-    axios.get(process.env.REACT_APP_IP + "/posts").then((responsePost) => {
-      let postArray = responsePost.data.items.reverse();
-      postArray = postArray.filter((item) => item.disabled === false);
-      setPosts(postArray);
-      console.log(responsePost.data.items);
-    });
+    axios
+      .get(process.env.REACT_APP_IP + "/posts", { params })
+      .then((responsePost) => {
+        let pages = responsePost.data.pages;
+        setPageCount(pages);
+
+        let postArray = responsePost.data.items.reverse();
+        postArray = postArray.filter((item) => item.disabled === false);
+        setPosts(postArray);
+      });
   }
+  useEffect(loadPosts, [pageNumber]);
 
   //! READING POSTS
   useEffect(loadPosts, []);
@@ -104,9 +115,6 @@ const PostSct = () => {
               className="post-button"
               type="submit"
               onClick={() => {
-                const date = new Date();
-                let hour = date.getHours() + " : " + date.getMinutes();
-                console.log(hour);
                 document.getElementById("minus").style.display = "none";
                 document.getElementById("plus").style.display = "block";
                 document.getElementById("post-maker").style.display = "none";
@@ -123,6 +131,10 @@ const PostSct = () => {
           <div className="post">
             <div className="post-user">
               <div className="post-avatar">
+                {e.author.avatar_url == ""
+                  ? (e.author.avatar_url =
+                      "https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1")
+                  : null}
                 <img
                   src={e.author.avatar_url}
                   alt="your avatar"
@@ -146,7 +158,7 @@ const PostSct = () => {
                     "Bearer " + AUTH_TOKEN;
                   axios
                     .delete(process.env.REACT_APP_IP + "/posts?post_id=" + e.id)
-                    .then((response) => {
+                    .then(() => {
                       loadPosts();
                     });
                 }}
@@ -172,6 +184,21 @@ const PostSct = () => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="page-switcher">
+        {Array.from(Array(pageCount).keys()).map((i) => {
+          const pageInnerNumber = i + 1;
+          return (
+            (
+              <button
+                className="page-switch"
+                onClick={() => setPageNumber(pageInnerNumber)}
+              >
+                {pageInnerNumber}
+              </button>
+            ) / { pageCount }
+          );
+        })}
       </div>
     </div>
   );
