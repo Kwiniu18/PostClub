@@ -4,11 +4,12 @@ const ProfileSct = () => {
   const navigate = useNavigate();
   const user_name =
     localStorage.getItem("name") + " " + localStorage.getItem("surname");
+  //!Log out function
   const logOut = () => {
     navigate("/");
     localStorage.clear();
   };
-  const [desc, setDesc] = useState(localStorage.getItem("description"));
+  const [desc, setDesc] = useState(localStorage.getItem("description")); //getting profile description
   return (
     <div className="profile-section">
       <div className="banner-section">
@@ -54,17 +55,17 @@ const ProfileSct = () => {
       </div>
       <div className="profile-nav" id="profile-nav">
         <div className="pr notifi">
-          <i class="bi bi-bell-fill"></i>
+          <i className="bi bi-bell-fill"></i>
         </div>
         <div className="pr links">
-          <i class="bi bi-link-45deg"></i>
+          <i className="bi bi-link-45deg"></i>
         </div>
         <div className="pr chat">
-          <i class="bi bi-chat-dots-fill"></i>
+          <i className="bi bi-chat-dots-fill"></i>
         </div>
         <div className="pr profile">
           <i
-            class="bi bi-person-fill"
+            className="bi bi-person-fill"
             onMouseOver={() => {
               let profileSettings = document.getElementById("profile-settings");
               profileSettings.style.display = "block";

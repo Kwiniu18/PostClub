@@ -1,30 +1,33 @@
 import React, { useState } from "react";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 function Login() {
   const navigate = useNavigate();
   function getToken(e) {
     e.preventDefault();
+    //setting parameters
     const params = new URLSearchParams();
     params.append("username", email);
     params.append("password", password);
 
+    //! geting token
     axios.post(process.env.REACT_APP_IP + "/token", params).then((response) => {
-      //let token = response.data.access_token;
       console.log(response.data.access_token);
       localStorage.setItem("token", response.data.access_token);
+      //load main page
       setTimeout(() => navigate("/postClub"), 3000);
     });
     setTimeout(() => {
-      console.log("storage" + localStorage.getItem("token")); //null
+      //saving token
       let storage = localStorage.getItem("token");
       const AUTH_TOKEN = localStorage.getItem("token");
+      //displaying error
       if (storage == null) {
         document.getElementById("error").style.display = "block";
       } else {
         document.getElementById("error").style.display = "none";
       }
-      console.log(AxiosError);
+      //! Saving /me data
       axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
       let user_data = axios.get(process.env.REACT_APP_IP + "/me");
       user_data.then((user_info) => {
@@ -37,7 +40,7 @@ function Login() {
       });
     }, 2000);
   }
-
+  //! input hooks
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
@@ -73,6 +76,7 @@ function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             ></input>
+            {/* not working:  */}
             <p id="forgot">forgot your password?</p>
             <p id="error">ERROR</p>
             <button type="submit" className="login-button">

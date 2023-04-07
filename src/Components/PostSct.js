@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const PostSct = () => {
+  //! input hooks
   const [postStatus, setPostStatus] = useState("😊 Happy");
   const [postContent, setPostContent] = useState("");
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(1);
 
-  let categroy_id = "1a2996e6-98d5-49c4-8619-397f95645325"; // main category
-  const AUTH_TOKEN = localStorage.getItem("token");
+  let categroy_id = "1a2996e6-98d5-49c4-8619-397f95645325"; // post category
+  const AUTH_TOKEN = localStorage.getItem("token"); //getting token
   const makePost = (e) => {
     e.preventDefault(e);
     const params = {
@@ -24,7 +25,7 @@ const PostSct = () => {
       loadPosts();
     });
   };
-
+  //checking post page
   const [pageNumber, setPageNumber] = useState(pageCount);
   const params = {
     page: pageNumber,
@@ -43,10 +44,8 @@ const PostSct = () => {
         setPosts(postArray);
       });
   }
-  useEffect(loadPosts, [pageNumber]);
-
-  //! READING POSTS
-  useEffect(loadPosts, []);
+  // eslint-disable-next-line
+  useEffect(loadPosts, [pageNumber]); //loads posts
 
   return (
     <div className="posts">
@@ -56,7 +55,7 @@ const PostSct = () => {
         </div>
         <div className="nav-options">
           <i
-            class="pst bi-plus-square"
+            className="pst bi-plus-square"
             id="plus"
             onClick={() => {
               let postmaker = document.getElementById("post-maker");
@@ -69,7 +68,7 @@ const PostSct = () => {
           <i
             id="minus"
             style={{ display: "none" }}
-            class="pst bi-dash-square"
+            className="pst bi-dash-square"
             onClick={() => {
               let postmaker = document.getElementById("post-maker");
               postmaker.style.display = "none";
@@ -78,7 +77,7 @@ const PostSct = () => {
             }}
           ></i>
           <i
-            class="pst bi-arrow-clockwise"
+            className="pst bi-arrow-clockwise"
             onClick={loadPosts}
             id="refresh-btn"
           ></i>
@@ -131,7 +130,7 @@ const PostSct = () => {
           <div className="post">
             <div className="post-user">
               <div className="post-avatar">
-                {e.author.avatar_url == ""
+                {e.author.avatar_url === ""
                   ? (e.author.avatar_url =
                       "https://th.bing.com/th/id/OIP.bfbNmLdRBSXVwsUOnlKNsgHaHa?pid=ImgDet&rs=1")
                   : null}
@@ -148,7 +147,7 @@ const PostSct = () => {
 
               <div className="post-status">- {e.title}</div>
             </div>
-            {localStorage.getItem("user_id") == e.author.id ? (
+            {localStorage.getItem("user_id") === e.author.id ? (
               <p
                 title="delete post"
                 id="bin"
@@ -189,16 +188,15 @@ const PostSct = () => {
         {Array.from(Array(pageCount).keys()).map((i) => {
           const pageInnerNumber = i + 1;
           return (
-            (
-              <button
-                className="page-switch"
-                onClick={() => setPageNumber(pageInnerNumber)}
-              >
-                {pageInnerNumber}
-              </button>
-            ) / { pageCount }
+            <button
+              className="page-switch"
+              onClick={() => setPageNumber(pageInnerNumber)}
+            >
+              {pageInnerNumber}
+            </button>
           );
         })}
+        / {pageCount}
       </div>
     </div>
   );

@@ -25,8 +25,6 @@ function Register() {
     const AUTH_TOKEN = localStorage.getItem("token");
     axios.defaults.headers.common["Authorization"] = "Bearer " + AUTH_TOKEN;
     axios.post(process.env.REACT_APP_IP + "/users", params).then((response) => {
-      //let token = response.data.access_token;
-      console.log(response);
       navigate("/");
     });
   }
@@ -36,7 +34,7 @@ function Register() {
       <form onSubmit={register}>
         <div className="register-right">
           <div className="register-form">
-            <i class="re bi-person-fill"></i>
+            <i className="re bi-person-fill"></i>
             <input
               type="text"
               placeholder="name"
@@ -46,7 +44,7 @@ function Register() {
               onChange={(e) => setName(e.target.value)}
             ></input>
             <br></br>
-            <i class="re bi-person-fill"></i>
+            <i className="re bi-person-fill"></i>
             <input
               type="text"
               placeholder="surname"
@@ -57,7 +55,7 @@ function Register() {
             ></input>
             <br></br>
 
-            <i class="re bi-envelope-fill"></i>
+            <i className="re bi-envelope-fill"></i>
             <input
               type="email"
               placeholder="email"
@@ -67,7 +65,7 @@ function Register() {
               onChange={(e) => setEmail(e.target.value)}
             ></input>
             <br></br>
-            <i class="re bi-lock-fill"></i>
+            <i className="re bi-lock-fill"></i>
             <input
               type="password"
               placeholder="password"

@@ -19,6 +19,9 @@
   .post {
     width: 80%;
   }
+  .post-reactions {
+    margin-left: 37%;
+  }
   .chat-container {
     position: absolute;
     top: 0;
@@ -46,6 +49,9 @@
     right: auto;
     left: 20%;
     min-width: 350px;
+  }
+  .post-reactions {
+    margin: auto;
   }
   .chat-chat {
     width: 83%;

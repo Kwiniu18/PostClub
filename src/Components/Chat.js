@@ -49,7 +49,7 @@ function Chat() {
         <div className="chat-nav">
           <input id="input-msg" type="text"></input>
           <i
-            class="msg bi-arrow-right-circle-fill"
+            className="msg bi-arrow-right-circle-fill"
             onClick={() => {
               let message = document.getElementById("input-msg").value;
               setMsg([
